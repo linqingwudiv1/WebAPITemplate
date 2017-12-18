@@ -1,0 +1,67 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>AuditSystemWebAPI</name>
+    </assembly>
+    <members>
+        <member name="T:AuditSystemWebAPI.FilterConfig">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:AuditSystemWebAPI.FilterConfig.RegisterGlobalFilters(System.Web.Mvc.GlobalFilterCollection)">
+            <summary>
+            
+            </summary>
+            <param name="filters"></param>
+        </member>
+        <member name="T:AuditSystemWebAPI.RouteConfig">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:AuditSystemWebAPI.RouteConfig.RegisterRoutes(System.Web.Routing.RouteCollection)">
+            <summary>
+            
+            </summary>
+            <param name="routes"></param>
+        </member>
+        <member name="T:AuditSystemWebAPI.WebApiConfig">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:AuditSystemWebAPI.WebApiConfig.Register(System.Web.Http.HttpConfiguration)">
+            <summary>
+            
+            </summary>
+            <param name="config"></param>
+        </member>
+        <member name="T:AuditSystemWebAPI.Controllers.HomeController">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:AuditSystemWebAPI.Controllers.HomeController.Index">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:AuditSystemWebAPI.WebApiApplication">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:AuditSystemWebAPI.WebApiApplication.Init">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:AuditSystemWebAPI.WebApiApplication.Application_Start">
+            <summary>
+            
+            </summary>
+        </member>
+    </members>
+</doc>

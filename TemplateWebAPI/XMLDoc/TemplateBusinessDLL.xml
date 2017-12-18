@@ -1,0 +1,77 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>AuditSystemBusinessDLL</name>
+    </assembly>
+    <members>
+        <member name="T:AuditSystemBusinessDLL.Helper.LogHelper">
+            <summary>
+            日志帮助器
+            </summary>
+        </member>
+        <member name="F:AuditSystemBusinessDLL.Helper.LogHelper.loginfo">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:AuditSystemBusinessDLL.Helper.LogHelper.NLogger">
+            <summary>
+            NLOG
+            </summary>
+        </member>
+        <member name="T:AuditSystemBusinessDLL.Static.Business.BusinessAPI_Base">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:AuditSystemBusinessDLL.Static.Business.ExtendMethod.ExMethod_Template">
+            <summary>
+            财务系统扩展方法
+            </summary>
+        </member>
+        <member name="T:AuditSystemBusinessDLL.Static.SessionHelper">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:AuditSystemBusinessDLL.Model.DTOs.DTO_ReturnModel`1">
+            <summary>
+            
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="M:AuditSystemBusinessDLL.Model.DTOs.DTO_ReturnModel`1.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:AuditSystemBusinessDLL.Model.DTOs.DTO_ReturnModel`1.#ctor(`0,System.Int32,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="_data"></param>
+            <param name="_state"></param>
+        </member>
+        <member name="P:AuditSystemBusinessDLL.Model.DTOs.DTO_ReturnModel`1.state">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:AuditSystemBusinessDLL.Model.DTOs.DTO_ReturnModel`1.data">
+            <summary>
+            数据
+            </summary>
+        </member>
+        <member name="T:AuditSystemBusinessDLL.Base.BaseAPIController">
+            <summary>
+            简单业务可用
+            </summary>
+        </member>
+        <member name="T:AuditSystemBusinessDLL.Base.BaseAPIController`1">
+            <summary>
+            帮助器业务
+            </summary>
+            <typeparam name="BusinessAPI"></typeparam>
+        </member>
+    </members>
+</doc>

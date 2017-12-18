@@ -1,0 +1,1511 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="AuditDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="AccountingFirms">
+          <Key>
+            <PropertyRef Name="AF_ID" />
+          </Key>
+          <Property Name="AF_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AF_CID" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="AF_Name" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="AF_Logo" Type="nchar" MaxLength="10" />
+          <Property Name="AF_Type" Type="int" Nullable="false" />
+          <Property Name="AF_Address" Type="varchar" MaxLength="200" />
+          <Property Name="Contact" Type="varchar" MaxLength="50" />
+          <Property Name="Telphone" Type="varchar" MaxLength="50" />
+          <Property Name="TaxpayerID" Type="varchar" MaxLength="50" />
+          <Property Name="RegistrationAddress" Type="varchar" MaxLength="200" />
+          <Property Name="AF_Bank" Type="varchar" MaxLength="50" />
+          <Property Name="AF_BankAccount" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Audit_OperatingLog">
+          <Key>
+            <PropertyRef Name="OL_ID" />
+          </Key>
+          <Property Name="OL_ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AF_ID" Type="int" />
+          <Property Name="User_ID" Type="int" Nullable="false" />
+          <Property Name="Modules" Type="varchar" MaxLength="50" />
+          <Property Name="OperatingType" Type="varchar" MaxLength="50" />
+          <Property Name="OperatingInstructions" Type="varchar" MaxLength="2000" />
+          <Property Name="CreateDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Audit_Organization">
+          <Key>
+            <PropertyRef Name="Org_ID" />
+          </Key>
+          <Property Name="Org_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Org_Name" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="AF_ID" Type="int" />
+          <Property Name="Parent_Org_ID" Type="int" Nullable="false" />
+          <Property Name="Org_Manager" Type="int" />
+        </EntityType>
+        <EntityType Name="Audit_Post">
+          <Key>
+            <PropertyRef Name="P_ID" />
+          </Key>
+          <Property Name="P_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AF_ID" Type="int" Nullable="false" />
+          <Property Name="Post_Name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Post_Level" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Audit_User">
+          <Key>
+            <PropertyRef Name="User_ID" />
+          </Key>
+          <Property Name="User_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AF_ID" Type="int" Nullable="false" />
+          <Property Name="Org_ID" Type="int" Nullable="false" />
+          <Property Name="User_Name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Photo" Type="varchar" MaxLength="200" />
+          <Property Name="Login_Name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Mobile" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Password" Type="varchar" MaxLength="2048" Nullable="false" />
+          <Property Name="State" Type="int" />
+          <Property Name="P_ID" Type="int" />
+          <Property Name="Sex" Type="int" />
+          <Property Name="TelPhone" Type="varchar" MaxLength="50" />
+          <Property Name="Email" Type="varchar" MaxLength="50" />
+          <Property Name="EntryDate" Type="smalldatetime" />
+          <Property Name="CreatDate" Type="smalldatetime" />
+          <Property Name="ExpiryDate" Type="smalldatetime" />
+          <Property Name="LockVersion" Type="timestamp" StoreGeneratedPattern="Computed" />
+        </EntityType>
+        <EntityType Name="C_Bank_Account">
+          <Key>
+            <PropertyRef Name="C_BAID" />
+          </Key>
+          <Property Name="C_BAID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CRE_ID" Type="bigint" />
+          <Property Name="FirstSubjectCode" Type="varchar" MaxLength="50" />
+          <Property Name="FirstSubjectTitle" Type="varchar" MaxLength="50" />
+          <Property Name="SubjectCode" Type="varchar" MaxLength="50" />
+          <Property Name="HelpCode" Type="varchar" MaxLength="50" />
+          <Property Name="SubjectTitle" Type="varchar" MaxLength="50" />
+          <Property Name="BankAccount" Type="varchar" MaxLength="50" />
+          <Property Name="Account_Type" Type="int" />
+          <Property Name="Account_Status" Type="int" />
+          <Property Name="isLimitation" Type="int" />
+          <Property Name="LimitationPeriod" Type="varchar" MaxLength="50" />
+          <Property Name="LimitationMoney" Type="money" />
+          <Property Name="AccountUse" Type="int" />
+        </EntityType>
+        <EntityType Name="C_Contract">
+          <Key>
+            <PropertyRef Name="C_COID" />
+          </Key>
+          <Property Name="C_COID" Type="bigint" Nullable="false" />
+          <Property Name="FirstSubjectCode" Type="varchar" MaxLength="50" />
+          <Property Name="FirstSubjectTitle" Type="varchar" MaxLength="50" />
+          <Property Name="SubjectCode" Type="varchar" MaxLength="50" />
+          <Property Name="HelpCode" Type="varchar" MaxLength="50" />
+          <Property Name="SubjectTitle" Type="varchar" MaxLength="50" />
+          <Property Name="C_ID" Type="int" />
+          <Property Name="CFRE_ER" Type="int" />
+          <Property Name="ContractType" Type="int" />
+          <Property Name="ContractID" Type="varchar" MaxLength="50" />
+          <Property Name="Money" Type="money" />
+          <Property Name="Price" Type="money" />
+          <Property Name="InterestRate" Type="float" />
+          <Property Name="Number" Type="int" />
+          <Property Name="HandleDepartment" Type="varchar" MaxLength="50" />
+          <Property Name="Handler" Type="varchar" MaxLength="50" />
+          <Property Name="isInvoice" Type="int" />
+          <Property Name="isOver" Type="int" />
+          <Property Name="UpdateDate" Type="smalldatetime" />
+          <Property Name="Attachment" Type="varchar" MaxLength="500" />
+        </EntityType>
+        <EntityType Name="C_FinancialRelevanceEnterprise">
+          <Key>
+            <PropertyRef Name="CFRE_ID" />
+          </Key>
+          <Property Name="CFRE_ID" Type="bigint" Nullable="false" />
+          <Property Name="CFRE_Classify" Type="int" />
+          <Property Name="CFR_ID" Type="bigint" />
+          <Property Name="CFRE_ER" Type="int" />
+          <Property Name="FirstSubjectCode" Type="varchar" MaxLength="50" />
+          <Property Name="FirstSubjectTitle" Type="varchar" MaxLength="50" />
+          <Property Name="SubjectCode" Type="varchar" MaxLength="50" />
+          <Property Name="HelpCode" Type="varchar" MaxLength="50" />
+          <Property Name="SubjectTitle" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="C_RelevanceEnterprise">
+          <Key>
+            <PropertyRef Name="CRE_ID" />
+          </Key>
+          <Property Name="CRE_ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="C_ID" Type="int" Nullable="false" />
+          <Property Name="CRE_Classify" Type="int" />
+          <Property Name="CreditCode" Type="varchar" MaxLength="50" />
+          <Property Name="CN_Enterprise_Name" Type="varchar" MaxLength="50" />
+          <Property Name="EN_Enterprise_Name" Type="varchar" MaxLength="50" />
+          <Property Name="RegistrationMoney" Type="int" />
+          <Property Name="Corporation" Type="varchar" MaxLength="50" />
+          <Property Name="RegistrationDate" Type="smalldatetime" />
+          <Property Name="RegistrationAddress" Type="varchar" MaxLength="200" />
+          <Property Name="WorkAddress" Type="varchar" MaxLength="200" />
+          <Property Name="Telphone" Type="varchar" MaxLength="50" />
+          <Property Name="Contact" Type="varchar" MaxLength="50" />
+          <Property Name="Contact_Department" Type="varbinary" MaxLength="50" />
+          <Property Name="Contact_Post" Type="varchar" MaxLength="50" />
+          <Property Name="Contact_Address" Type="varchar" MaxLength="200" />
+          <Property Name="Contact_Telphone" Type="varchar" MaxLength="50" />
+          <Property Name="Contact_PostCode" Type="varchar" MaxLength="10" />
+          <Property Name="FAX" Type="varchar" MaxLength="50" />
+          <Property Name="EMail" Type="varchar" MaxLength="50" />
+          <Property Name="BusinessScope" Type="varchar(max)" />
+          <Property Name="Company_Articles" Type="varchar(max)" />
+          <Property Name="Invoice_CompayName" Type="varchar" MaxLength="50" />
+          <Property Name="Invoice_TaxpayerID" Type="varchar" MaxLength="50" />
+          <Property Name="Invoice_TEL" Type="varchar" MaxLength="50" />
+          <Property Name="Invoice_RegistrationAddress" Type="varchar" MaxLength="200" />
+          <Property Name="Invoice_Bank" Type="varchar" MaxLength="50" />
+          <Property Name="Invoice_BankAccount" Type="varchar" MaxLength="50" />
+          <Property Name="isAffiliatedPerson" Type="int" />
+          <Property Name="isAffiliatedCompany" Type="int" />
+          <Property Name="BusinessType" Type="int" />
+          <Property Name="LockVersion" Type="timestamp" StoreGeneratedPattern="Computed" />
+        </EntityType>
+        <EntityType Name="C_RelevancePersonage">
+          <Key>
+            <PropertyRef Name="CRP_ID" />
+          </Key>
+          <Property Name="CRP_ID" Type="bigint" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" />
+          <Property Name="ID_Type" Type="int" />
+          <Property Name="ID" Type="varchar" MaxLength="50" />
+          <Property Name="Address" Type="varchar" MaxLength="200" />
+          <Property Name="Telphone" Type="varchar" MaxLength="50" />
+          <Property Name="PostCode" Type="varchar" MaxLength="10" />
+          <Property Name="EMail" Type="varchar" MaxLength="50" />
+          <Property Name="FundNature" Type="varchar" MaxLength="50" />
+          <Property Name="FundWay" Type="int" />
+        </EntityType>
+        <EntityType Name="CA_Role">
+          <Key>
+            <PropertyRef Name="RID" />
+          </Key>
+          <Property Name="RID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Role" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="CA_User">
+          <Key>
+            <PropertyRef Name="CA_UserID" />
+          </Key>
+          <Property Name="CA_UserID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="C_ID" Type="int" Nullable="false" />
+          <Property Name="User_ID" Type="int" Nullable="false" />
+          <Property Name="Role_ID" Type="int" Nullable="false" />
+          <Property Name="Status" Type="int" Nullable="false" />
+          <Property Name="Remark" Type="varchar" MaxLength="500" />
+        </EntityType>
+        <EntityType Name="Company">
+          <Key>
+            <PropertyRef Name="C_ID" />
+          </Key>
+          <Property Name="C_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CreditCode" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="CN_Compant_Name" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="EN_Compant_Name" Type="varchar" MaxLength="50" />
+          <Property Name="Logo" Type="varchar" MaxLength="200" />
+          <Property Name="Company_Lever" Type="varchar" MaxLength="50" />
+          <Property Name="RegistrationCode" Type="varchar" MaxLength="50" />
+          <Property Name="OrganizationCode" Type="varchar" MaxLength="50" />
+          <Property Name="TaxpayerID" Type="varchar" MaxLength="50" />
+          <Property Name="Corporation" Type="varchar" MaxLength="50" />
+          <Property Name="Corporation_ID" Type="varchar" MaxLength="50" />
+          <Property Name="Company_Type" Type="int" Nullable="false" />
+          <Property Name="Industry" Type="int" Nullable="false" />
+          <Property Name="EnterpriseLabels" Type="varchar" MaxLength="500" />
+          <Property Name="ApprovedDate" Type="smalldatetime" />
+          <Property Name="OperationPeriod" Type="smalldatetime" />
+          <Property Name="RegInstitute" Type="varchar" MaxLength="50" />
+          <Property Name="Province" Type="varchar" MaxLength="50" />
+          <Property Name="City" Type="varchar" MaxLength="50" />
+          <Property Name="District" Type="varchar" MaxLength="50" />
+          <Property Name="RegistrationDate" Type="smalldatetime" />
+          <Property Name="RegistrationMoney" Type="varchar" MaxLength="50" />
+          <Property Name="RegistrationAddress" Type="varchar" MaxLength="200" />
+          <Property Name="WorkAddress" Type="varchar" MaxLength="200" />
+          <Property Name="RegistrationStatus" Type="int" />
+          <Property Name="Telphone" Type="varchar" MaxLength="50" />
+          <Property Name="FAX" Type="varchar" MaxLength="50" />
+          <Property Name="Email" Type="varchar" MaxLength="50" />
+          <Property Name="Website" Type="varchar" MaxLength="50" />
+          <Property Name="Company_Introduction" Type="varchar" MaxLength="5000" />
+          <Property Name="BusinessScope" Type="varchar" MaxLength="5000" />
+          <Property Name="Company_Articles" Type="varchar" MaxLength="5000" />
+          <Property Name="Parent_C_ID" Type="int" />
+          <Property Name="Parent_C_Name" Type="varchar" MaxLength="200" />
+          <Property Name="Parent_C_CreditCode" Type="varchar" MaxLength="50" />
+          <Property Name="AuditStatus" Type="int" />
+          <Property Name="Creator" Type="varchar" MaxLength="50" />
+          <Property Name="CreateDate" Type="datetime" />
+          <Property Name="UpdateDate" Type="datetime" />
+          <Property Name="LockVersion" Type="timestamp" StoreGeneratedPattern="Computed" />
+        </EntityType>
+        <!--生成过程中发现错误:
+警告 6002: 表/视图“AuditDB.dbo.F_AccountBook”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
+        <EntityType Name="F_AccountBook">
+          <Key>
+            <PropertyRef Name="FAB_ID" />
+          </Key>
+          <Property Name="FAB_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AB_Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="C_ID" Type="int" />
+          <Property Name="Year" Type="int" />
+          <Property Name="AccountingPeriod" Type="datetime" />
+          <Property Name="AccountingperiodRemark" Type="nvarchar" MaxLength="500" />
+          <Property Name="FS_ID" Type="int" />
+          <Property Name="Author" Type="int" />
+          <Property Name="CreateDate" Type="datetime" />
+          <Property Name="ExportLocking" Type="int" />
+        </EntityType>
+        <EntityType Name="F_DetailAccount">
+          <Key>
+            <PropertyRef Name="FDA_ID" />
+          </Key>
+          <Property Name="FDA_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="C_ID" Type="int" Nullable="false" />
+          <Property Name="FAB_ID" Type="int" Nullable="false" />
+          <Property Name="Year" Type="int" Nullable="false" />
+          <Property Name="Date" Type="date" />
+          <Property Name="Voucher" Type="nvarchar" MaxLength="50" />
+          <Property Name="VoucherID" Type="nvarchar" MaxLength="50" />
+          <Property Name="SubjectCode" Type="nvarchar" MaxLength="50" />
+          <Property Name="SubjectTitle" Type="nvarchar" MaxLength="500" />
+          <Property Name="Abstract" Type="nvarchar" MaxLength="500" />
+          <Property Name="Direction" Type="int" />
+          <Property Name="Number" Type="int" />
+          <Property Name="Currency" Type="varchar" MaxLength="50" />
+          <Property Name="Money" Type="float" />
+          <Property Name="ForeignMoney" Type="float" />
+          <Property Name="ChangeRange" Type="int" />
+          <Property Name="ChangeType" Type="int" />
+          <Property Name="IsCheck" Type="int" />
+          <Property Name="Creator" Type="int" />
+          <Property Name="CreateDate" Type="date" />
+          <Property Name="SysCode" Type="nvarchar" MaxLength="50" />
+          <Property Name="A_DetailHelp_Code" Type="varchar" MaxLength="50" />
+          <Property Name="A_DetailHelp_Name" Type="varchar" MaxLength="50" />
+          <Property Name="B_DetailHelp_Code" Type="varchar" MaxLength="50" />
+          <Property Name="B_DetailHelp_Name" Type="varchar" MaxLength="50" />
+          <Property Name="C_DetailHelp_Code" Type="varchar" MaxLength="50" />
+          <Property Name="C_DetailHelp_Name" Type="varchar" MaxLength="50" />
+          <Property Name="D_DetailHelp_Code" Type="varchar" MaxLength="50" />
+          <Property Name="D_DetailHelp_Name" Type="varchar" MaxLength="50" />
+          <Property Name="E_DetailHelp_Code" Type="varchar" MaxLength="50" />
+          <Property Name="E_DetailHelp_Name" Type="varchar" MaxLength="50" />
+          <Property Name="F_DetailHelp_Code" Type="varchar" MaxLength="50" />
+          <Property Name="F_DetailHelp_Name" Type="varchar" MaxLength="50" />
+          <Property Name="G_DetailHelp_Code" Type="varchar" MaxLength="50" />
+          <Property Name="G_DetailHelp_Name" Type="varchar" MaxLength="50" />
+          <Property Name="H_DetailHelp_Code" Type="varchar" MaxLength="50" />
+          <Property Name="H_DetailHelp_Name" Type="varchar" MaxLength="50" />
+          <Property Name="I_DetailHelp_Code" Type="varchar" MaxLength="50" />
+          <Property Name="I_DetailHelp_Name" Type="varchar" MaxLength="50" />
+          <Property Name="J_DetailHelp_Code" Type="varchar" MaxLength="50" />
+          <Property Name="J_DetailHelp_Name" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <!--生成过程中发现错误:
+警告 6002: 表/视图“AuditDB.dbo.F_DetailAttachment”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
+        <EntityType Name="F_DetailAttachment">
+          <Key>
+            <PropertyRef Name="VoucherID" />
+          </Key>
+          <Property Name="VoucherID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FAB_ID" Type="int" />
+          <Property Name="C_ID" Type="int" />
+          <Property Name="Year" Type="int" />
+          <Property Name="Date" Type="datetime" />
+          <Property Name="Voucher" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <!--生成过程中发现错误:
+警告 6002: 表/视图“AuditDB.dbo.F_DetailHelp”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
+        <EntityType Name="F_DetailHelp">
+          <Key>
+            <PropertyRef Name="FDH_ID" />
+          </Key>
+          <Property Name="FDH_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FAB_ID" Type="int" />
+          <Property Name="FDA_ID" Type="int" />
+          <Property Name="C_ID" Type="int" />
+          <Property Name="Type" Type="nvarchar" MaxLength="50" />
+          <Property Name="Code" Type="nvarchar" MaxLength="50" />
+          <Property Name="Title" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <!--生成过程中发现错误:
+警告 6002: 表/视图“AuditDB.dbo.F_FinancialSystem”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
+        <EntityType Name="F_FinancialSystem">
+          <Key>
+            <PropertyRef Name="FS_ID" />
+          </Key>
+          <Property Name="FS_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FinancialSystem" Type="nvarchar" MaxLength="50" />
+          <Property Name="Type" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <!--生成过程中发现错误:
+警告 6002: 表/视图“AuditDB.dbo.F_Proof”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
+        <EntityType Name="F_Proof">
+          <Key>
+            <PropertyRef Name="VoucherID" />
+          </Key>
+          <Property Name="VoucherID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="C_ID" Type="int" />
+          <Property Name="FAB_ID" Type="int" />
+          <Property Name="Year" Type="int" />
+          <Property Name="Date" Type="smalldatetime" />
+          <Property Name="Voucher" Type="varchar" MaxLength="50" />
+          <Property Name="FileIndex" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="F_TrialBalance">
+          <Key>
+            <PropertyRef Name="FTB_ID" />
+          </Key>
+          <Property Name="FTB_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="C_ID" Type="int" Nullable="false" />
+          <Property Name="FAB_ID" Type="int" Nullable="false" />
+          <Property Name="Year" Type="int" Nullable="false" />
+          <Property Name="SubjectCode" Type="nvarchar" MaxLength="50" />
+          <Property Name="SubjectTitle" Type="nvarchar" MaxLength="50" />
+          <Property Name="isMappingSure" Type="int" />
+          <Property Name="SubjectCodeMapping" Type="nvarchar" MaxLength="50" />
+          <Property Name="SubjectTitleMapping" Type="nvarchar" MaxLength="50" />
+          <Property Name="HelpCode" Type="nvarchar" MaxLength="50" />
+          <Property Name="ForeignCurrency" Type="nvarchar" MaxLength="50" />
+          <Property Name="Qc_Direction" Type="int" />
+          <Property Name="Qc_old" Type="float" />
+          <Property Name="Qc_num_old" Type="int" />
+          <Property Name="Qc_Change" Type="float" />
+          <Property Name="Qc_Change_num" Type="int" />
+          <Property Name="Bq_debit_old" Type="float" />
+          <Property Name="Bq_debit_num_old" Type="int" />
+          <Property Name="Bq_debit_num" Type="int" />
+          <Property Name="Bq_debit" Type="float" />
+          <Property Name="Bq_credit_old" Type="float" />
+          <Property Name="Bq_credit_num_old" Type="int" />
+          <Property Name="Bq_credit_num" Type="int" />
+          <Property Name="Bq_credit" Type="float" />
+          <Property Name="Qm_Direction" Type="int" />
+          <Property Name="Qm_old" Type="float" />
+          <Property Name="Qm_num_old" Type="int" />
+          <Property Name="Bq_Change_credit" Type="float" />
+          <Property Name="Bq_Change_credit_num" Type="int" />
+          <Property Name="Bq_Change_debit" Type="float" />
+          <Property Name="Bq_Change_debit_num" Type="int" />
+          <Property Name="SubjectLevel" Type="int" />
+          <Property Name="Creator" Type="int" />
+          <Property Name="Direction" Type="int" />
+          <Property Name="CreateDate" Type="datetime" />
+          <Property Name="IsConfirmation" Type="int" />
+          <Property Name="SubjectCodePath" Type="nvarchar" MaxLength="500" />
+          <Property Name="SubjectTitlePath" Type="nvarchar" MaxLength="2000" />
+          <Property Name="ParentSubjectCode" Type="nvarchar" MaxLength="50" />
+          <Property Name="IsMapping" Type="int" />
+        </EntityType>
+        <EntityType Name="FR_Report">
+          <Key>
+            <PropertyRef Name="FR_ID" />
+          </Key>
+          <Property Name="FR_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FR_Code" Type="varchar" MaxLength="10" />
+          <Property Name="FR_Name" Type="varchar" MaxLength="50" />
+          <Property Name="FR_Type" Type="int" />
+          <Property Name="FR_Content" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="FR_Report_Formula">
+          <Key>
+            <PropertyRef Name="FR_FRID" />
+          </Key>
+          <Property Name="FR_FRID" Type="int" Nullable="false" />
+          <Property Name="C_ID" Type="int" />
+          <Property Name="FR_Code" Type="varchar" MaxLength="10" />
+          <Property Name="FR_FCode" Type="varchar" MaxLength="10" />
+          <Property Name="SubjectTitle" Type="varchar" MaxLength="500" />
+          <Property Name="Subject_File" Type="varchar" MaxLength="50" />
+          <Property Name="FR_RowValue" Type="int" />
+          <Property Name="Direction" Type="int" />
+        </EntityType>
+        <EntityType Name="M_BaseTable">
+          <Key>
+            <PropertyRef Name="MID" />
+          </Key>
+          <Property Name="MID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Filed" Type="varchar" MaxLength="50" />
+          <Property Name="M_ID" Type="int" />
+          <Property Name="M_Name" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="M_Subject">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SubjectClassify" Type="varchar" MaxLength="50" />
+          <Property Name="SubjectCode" Type="varchar" MaxLength="50" />
+          <Property Name="SubjectName" Type="varchar" MaxLength="50" />
+          <Property Name="Direction" Type="int" />
+        </EntityType>
+        <EntityType Name="报表字段">
+          <Key>
+            <PropertyRef Name="FR_FID" />
+          </Key>
+          <Property Name="FR_FID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FR_FCode" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="FR_FName" Type="varchar" MaxLength="50" />
+          <Property Name="isCustomField" Type="int" />
+          <Property Name="isConvergeField" Type="int" />
+        </EntityType>
+        <EntityContainer Name="AuditDBModelStoreContainer">
+          <EntitySet Name="AccountingFirms" EntityType="Self.AccountingFirms" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Audit_OperatingLog" EntityType="Self.Audit_OperatingLog" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Audit_Organization" EntityType="Self.Audit_Organization" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Audit_Post" EntityType="Self.Audit_Post" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Audit_User" EntityType="Self.Audit_User" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="C_Bank_Account" EntityType="Self.C_Bank_Account" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="C_Contract" EntityType="Self.C_Contract" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="C_FinancialRelevanceEnterprise" EntityType="Self.C_FinancialRelevanceEnterprise" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="C_RelevanceEnterprise" EntityType="Self.C_RelevanceEnterprise" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="C_RelevancePersonage" EntityType="Self.C_RelevancePersonage" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CA_Role" EntityType="Self.CA_Role" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CA_User" EntityType="Self.CA_User" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Company" EntityType="Self.Company" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="F_DetailAccount" EntityType="Self.F_DetailAccount" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="F_TrialBalance" EntityType="Self.F_TrialBalance" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FR_Report" EntityType="Self.FR_Report" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FR_Report_Formula" EntityType="Self.FR_Report_Formula" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="M_BaseTable" EntityType="Self.M_BaseTable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="M_Subject" EntityType="Self.M_Subject" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="报表字段" EntityType="Self.报表字段" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="F_AccountBook" EntityType="Self.F_AccountBook" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [F_AccountBook].[FAB_ID] AS [FAB_ID], 
+    [F_AccountBook].[AB_Name] AS [AB_Name], 
+    [F_AccountBook].[C_ID] AS [C_ID], 
+    [F_AccountBook].[Year] AS [Year], 
+    [F_AccountBook].[AccountingPeriod] AS [AccountingPeriod], 
+    [F_AccountBook].[AccountingperiodRemark] AS [AccountingperiodRemark], 
+    [F_AccountBook].[FS_ID] AS [FS_ID], 
+    [F_AccountBook].[Author] AS [Author], 
+    [F_AccountBook].[CreateDate] AS [CreateDate], 
+    [F_AccountBook].[ExportLocking] AS [ExportLocking]
+    FROM [dbo].[F_AccountBook] AS [F_AccountBook]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="F_DetailAttachment" EntityType="Self.F_DetailAttachment" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [F_DetailAttachment].[VoucherID] AS [VoucherID], 
+    [F_DetailAttachment].[FAB_ID] AS [FAB_ID], 
+    [F_DetailAttachment].[C_ID] AS [C_ID], 
+    [F_DetailAttachment].[Year] AS [Year], 
+    [F_DetailAttachment].[Date] AS [Date], 
+    [F_DetailAttachment].[Voucher] AS [Voucher]
+    FROM [dbo].[F_DetailAttachment] AS [F_DetailAttachment]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="F_DetailHelp" EntityType="Self.F_DetailHelp" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [F_DetailHelp].[FDH_ID] AS [FDH_ID], 
+    [F_DetailHelp].[FAB_ID] AS [FAB_ID], 
+    [F_DetailHelp].[FDA_ID] AS [FDA_ID], 
+    [F_DetailHelp].[C_ID] AS [C_ID], 
+    [F_DetailHelp].[Type] AS [Type], 
+    [F_DetailHelp].[Code] AS [Code], 
+    [F_DetailHelp].[Title] AS [Title]
+    FROM [dbo].[F_DetailHelp] AS [F_DetailHelp]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="F_FinancialSystem" EntityType="Self.F_FinancialSystem" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [F_FinancialSystem].[FS_ID] AS [FS_ID], 
+    [F_FinancialSystem].[FinancialSystem] AS [FinancialSystem], 
+    [F_FinancialSystem].[Type] AS [Type]
+    FROM [dbo].[F_FinancialSystem] AS [F_FinancialSystem]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="F_Proof" EntityType="Self.F_Proof" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [F_Proof].[VoucherID] AS [VoucherID], 
+    [F_Proof].[C_ID] AS [C_ID], 
+    [F_Proof].[FAB_ID] AS [FAB_ID], 
+    [F_Proof].[Year] AS [Year], 
+    [F_Proof].[Date] AS [Date], 
+    [F_Proof].[Voucher] AS [Voucher], 
+    [F_Proof].[FileIndex] AS [FileIndex]
+    FROM [dbo].[F_Proof] AS [F_Proof]</DefiningQuery>
+          </EntitySet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="AuditDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="AccountingFirms">
+          <Key>
+            <PropertyRef Name="AF_ID" />
+          </Key>
+          <Property Name="AF_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AF_CID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="AF_Name" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="AF_Logo" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="AF_Type" Type="Int32" Nullable="false" />
+          <Property Name="AF_Address" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Contact" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Telphone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="TaxpayerID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="RegistrationAddress" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="AF_Bank" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="AF_BankAccount" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Audit_OperatingLog">
+          <Key>
+            <PropertyRef Name="OL_ID" />
+          </Key>
+          <Property Name="OL_ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AF_ID" Type="Int32" />
+          <Property Name="User_ID" Type="Int32" Nullable="false" />
+          <Property Name="Modules" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="OperatingType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="OperatingInstructions" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
+          <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="Audit_Organization">
+          <Key>
+            <PropertyRef Name="Org_ID" />
+          </Key>
+          <Property Name="Org_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Org_Name" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="AF_ID" Type="Int32" />
+          <Property Name="Parent_Org_ID" Type="Int32" Nullable="false" />
+          <Property Name="Org_Manager" Type="Int32" />
+        </EntityType>
+        <EntityType Name="Audit_Post">
+          <Key>
+            <PropertyRef Name="P_ID" />
+          </Key>
+          <Property Name="P_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AF_ID" Type="Int32" Nullable="false" />
+          <Property Name="Post_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Post_Level" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Audit_User">
+          <Key>
+            <PropertyRef Name="User_ID" />
+          </Key>
+          <Property Name="User_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AF_ID" Type="Int32" Nullable="false" />
+          <Property Name="Org_ID" Type="Int32" Nullable="false" />
+          <Property Name="User_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Photo" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Login_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Mobile" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="2048" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="State" Type="Int32" />
+          <Property Name="P_ID" Type="Int32" />
+          <Property Name="Sex" Type="Int32" />
+          <Property Name="TelPhone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="EntryDate" Type="DateTime" Precision="0" />
+          <Property Name="CreatDate" Type="DateTime" Precision="0" />
+          <Property Name="ExpiryDate" Type="DateTime" Precision="0" />
+          <Property Name="LockVersion" Type="Binary" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
+        </EntityType>
+        <EntityType Name="C_Bank_Account">
+          <Key>
+            <PropertyRef Name="C_BAID" />
+          </Key>
+          <Property Name="C_BAID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CRE_ID" Type="Int64" />
+          <Property Name="FirstSubjectCode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="FirstSubjectTitle" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="SubjectCode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="HelpCode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="SubjectTitle" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="BankAccount" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Account_Type" Type="Int32" />
+          <Property Name="Account_Status" Type="Int32" />
+          <Property Name="isLimitation" Type="Int32" />
+          <Property Name="LimitationPeriod" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="LimitationMoney" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="AccountUse" Type="Int32" />
+        </EntityType>
+        <EntityType Name="C_Contract">
+          <Key>
+            <PropertyRef Name="C_COID" />
+          </Key>
+          <Property Name="C_COID" Type="Int64" Nullable="false" />
+          <Property Name="FirstSubjectCode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="FirstSubjectTitle" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="SubjectCode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="HelpCode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="SubjectTitle" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="C_ID" Type="Int32" />
+          <Property Name="CFRE_ER" Type="Int32" />
+          <Property Name="ContractType" Type="Int32" />
+          <Property Name="ContractID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Money" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="Price" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="InterestRate" Type="Double" />
+          <Property Name="Number" Type="Int32" />
+          <Property Name="HandleDepartment" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Handler" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="isInvoice" Type="Int32" />
+          <Property Name="isOver" Type="Int32" />
+          <Property Name="UpdateDate" Type="DateTime" Precision="0" />
+          <Property Name="Attachment" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="C_FinancialRelevanceEnterprise">
+          <Key>
+            <PropertyRef Name="CFRE_ID" />
+          </Key>
+          <Property Name="CFRE_ID" Type="Int64" Nullable="false" />
+          <Property Name="CFRE_Classify" Type="Int32" />
+          <Property Name="CFR_ID" Type="Int64" />
+          <Property Name="CFRE_ER" Type="Int32" />
+          <Property Name="FirstSubjectCode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="FirstSubjectTitle" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="SubjectCode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="HelpCode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="SubjectTitle" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="C_RelevanceEnterprise">
+          <Key>
+            <PropertyRef Name="CRE_ID" />
+          </Key>
+          <Property Name="CRE_ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="C_ID" Type="Int32" Nullable="false" />
+          <Property Name="CRE_Classify" Type="Int32" />
+          <Property Name="CreditCode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CN_Enterprise_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="EN_Enterprise_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="RegistrationMoney" Type="Int32" />
+          <Property Name="Corporation" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="RegistrationDate" Type="DateTime" Precision="0" />
+          <Property Name="RegistrationAddress" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="WorkAddress" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Telphone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Contact" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Contact_Department" Type="Binary" MaxLength="50" FixedLength="false" />
+          <Property Name="Contact_Post" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Contact_Address" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Contact_Telphone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Contact_PostCode" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="FAX" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="EMail" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="BusinessScope" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Company_Articles" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Invoice_CompayName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Invoice_TaxpayerID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Invoice_TEL" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Invoice_RegistrationAddress" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Invoice_Bank" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Invoice_BankAccount" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="isAffiliatedPerson" Type="Int32" />
+          <Property Name="isAffiliatedCompany" Type="Int32" />
+          <Property Name="BusinessType" Type="Int32" />
+          <Property Name="LockVersion" Type="Binary" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
+        </EntityType>
+        <EntityType Name="C_RelevancePersonage">
+          <Key>
+            <PropertyRef Name="CRP_ID" />
+          </Key>
+          <Property Name="CRP_ID" Type="Int64" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ID_Type" Type="Int32" />
+          <Property Name="ID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Address" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Telphone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PostCode" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="EMail" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="FundNature" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="FundWay" Type="Int32" />
+        </EntityType>
+        <EntityType Name="CA_Role">
+          <Key>
+            <PropertyRef Name="RID" />
+          </Key>
+          <Property Name="RID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Role" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="CA_User">
+          <Key>
+            <PropertyRef Name="CA_UserID" />
+          </Key>
+          <Property Name="CA_UserID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="C_ID" Type="Int32" Nullable="false" />
+          <Property Name="User_ID" Type="Int32" Nullable="false" />
+          <Property Name="Role_ID" Type="Int32" Nullable="false" />
+          <Property Name="Status" Type="Int32" Nullable="false" />
+          <Property Name="Remark" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Company">
+          <Key>
+            <PropertyRef Name="C_ID" />
+          </Key>
+          <Property Name="C_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CreditCode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CN_Compant_Name" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="EN_Compant_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Logo" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Company_Lever" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="RegistrationCode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="OrganizationCode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="TaxpayerID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Corporation" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Corporation_ID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Company_Type" Type="Int32" Nullable="false" />
+          <Property Name="Industry" Type="Int32" Nullable="false" />
+          <Property Name="EnterpriseLabels" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="ApprovedDate" Type="DateTime" Precision="0" />
+          <Property Name="OperationPeriod" Type="DateTime" Precision="0" />
+          <Property Name="RegInstitute" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Province" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="City" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="District" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="RegistrationDate" Type="DateTime" Precision="0" />
+          <Property Name="RegistrationMoney" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="RegistrationAddress" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="WorkAddress" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="RegistrationStatus" Type="Int32" />
+          <Property Name="Telphone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="FAX" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Website" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Company_Introduction" Type="String" MaxLength="5000" FixedLength="false" Unicode="false" />
+          <Property Name="BusinessScope" Type="String" MaxLength="5000" FixedLength="false" Unicode="false" />
+          <Property Name="Company_Articles" Type="String" MaxLength="5000" FixedLength="false" Unicode="false" />
+          <Property Name="Parent_C_ID" Type="Int32" />
+          <Property Name="Parent_C_Name" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Parent_C_CreditCode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="AuditStatus" Type="Int32" />
+          <Property Name="Creator" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CreateDate" Type="DateTime" Precision="3" />
+          <Property Name="UpdateDate" Type="DateTime" Precision="3" />
+          <Property Name="LockVersion" Type="Binary" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
+        </EntityType>
+        <EntityType Name="F_DetailAccount">
+          <Key>
+            <PropertyRef Name="FDA_ID" />
+          </Key>
+          <Property Name="FDA_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="C_ID" Type="Int32" Nullable="false" />
+          <Property Name="FAB_ID" Type="Int32" Nullable="false" />
+          <Property Name="Year" Type="Int32" Nullable="false" />
+          <Property Name="Date" Type="DateTime" Precision="0" />
+          <Property Name="Voucher" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="VoucherID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SubjectCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SubjectTitle" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Abstract" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Direction" Type="Int32" />
+          <Property Name="Number" Type="Int32" />
+          <Property Name="Currency" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Money" Type="Double" />
+          <Property Name="ForeignMoney" Type="Double" />
+          <Property Name="ChangeRange" Type="Int32" />
+          <Property Name="ChangeType" Type="Int32" />
+          <Property Name="IsCheck" Type="Int32" />
+          <Property Name="Creator" Type="Int32" />
+          <Property Name="CreateDate" Type="DateTime" Precision="0" />
+          <Property Name="SysCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="A_DetailHelp_Code" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="A_DetailHelp_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="B_DetailHelp_Code" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="B_DetailHelp_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="C_DetailHelp_Code" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="C_DetailHelp_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="D_DetailHelp_Code" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="D_DetailHelp_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="E_DetailHelp_Code" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="E_DetailHelp_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="F_DetailHelp_Code" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="F_DetailHelp_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="G_DetailHelp_Code" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="G_DetailHelp_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="H_DetailHelp_Code" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="H_DetailHelp_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="I_DetailHelp_Code" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="I_DetailHelp_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="J_DetailHelp_Code" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="J_DetailHelp_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="F_TrialBalance">
+          <Key>
+            <PropertyRef Name="FTB_ID" />
+          </Key>
+          <Property Name="FTB_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="C_ID" Type="Int32" Nullable="false" />
+          <Property Name="FAB_ID" Type="Int32" Nullable="false" />
+          <Property Name="Year" Type="Int32" Nullable="false" />
+          <Property Name="SubjectCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SubjectTitle" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="isMappingSure" Type="Int32" />
+          <Property Name="SubjectCodeMapping" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SubjectTitleMapping" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="HelpCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ForeignCurrency" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Qc_Direction" Type="Int32" />
+          <Property Name="Qc_old" Type="Double" />
+          <Property Name="Qc_num_old" Type="Int32" />
+          <Property Name="Qc_Change" Type="Double" />
+          <Property Name="Qc_Change_num" Type="Int32" />
+          <Property Name="Bq_debit_old" Type="Double" />
+          <Property Name="Bq_debit_num_old" Type="Int32" />
+          <Property Name="Bq_debit_num" Type="Int32" />
+          <Property Name="Bq_debit" Type="Double" />
+          <Property Name="Bq_credit_old" Type="Double" />
+          <Property Name="Bq_credit_num_old" Type="Int32" />
+          <Property Name="Bq_credit_num" Type="Int32" />
+          <Property Name="Bq_credit" Type="Double" />
+          <Property Name="Qm_Direction" Type="Int32" />
+          <Property Name="Qm_old" Type="Double" />
+          <Property Name="Qm_num_old" Type="Int32" />
+          <Property Name="Bq_Change_credit" Type="Double" />
+          <Property Name="Bq_Change_credit_num" Type="Int32" />
+          <Property Name="Bq_Change_debit" Type="Double" />
+          <Property Name="Bq_Change_debit_num" Type="Int32" />
+          <Property Name="SubjectLevel" Type="Int32" />
+          <Property Name="Creator" Type="Int32" />
+          <Property Name="Direction" Type="Int32" />
+          <Property Name="CreateDate" Type="DateTime" Precision="3" />
+          <Property Name="IsConfirmation" Type="Int32" />
+          <Property Name="SubjectCodePath" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="SubjectTitlePath" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" />
+          <Property Name="ParentSubjectCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IsMapping" Type="Int32" />
+        </EntityType>
+        <EntityType Name="FR_Report">
+          <Key>
+            <PropertyRef Name="FR_ID" />
+          </Key>
+          <Property Name="FR_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FR_Code" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="FR_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="FR_Type" Type="Int32" />
+          <Property Name="FR_Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="FR_Report_Formula">
+          <Key>
+            <PropertyRef Name="FR_FRID" />
+          </Key>
+          <Property Name="FR_FRID" Type="Int32" Nullable="false" />
+          <Property Name="C_ID" Type="Int32" />
+          <Property Name="FR_Code" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="FR_FCode" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="SubjectTitle" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="Subject_File" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="FR_RowValue" Type="Int32" />
+          <Property Name="Direction" Type="Int32" />
+        </EntityType>
+        <EntityType Name="M_BaseTable">
+          <Key>
+            <PropertyRef Name="MID" />
+          </Key>
+          <Property Name="MID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Filed" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="M_ID" Type="Int32" />
+          <Property Name="M_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="M_Subject">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SubjectClassify" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="SubjectCode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="SubjectName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Direction" Type="Int32" />
+        </EntityType>
+        <EntityType Name="报表字段">
+          <Key>
+            <PropertyRef Name="FR_FID" />
+          </Key>
+          <Property Name="FR_FID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FR_FCode" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="FR_FName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="isCustomField" Type="Int32" />
+          <Property Name="isConvergeField" Type="Int32" />
+        </EntityType>
+        <EntityType Name="F_AccountBook">
+          <Key>
+            <PropertyRef Name="FAB_ID" />
+          </Key>
+          <Property Name="FAB_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AB_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="C_ID" Type="Int32" />
+          <Property Name="Year" Type="Int32" />
+          <Property Name="AccountingPeriod" Type="DateTime" Precision="3" />
+          <Property Name="AccountingperiodRemark" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="FS_ID" Type="Int32" />
+          <Property Name="Author" Type="Int32" />
+          <Property Name="CreateDate" Type="DateTime" Precision="3" />
+          <Property Name="ExportLocking" Type="Int32" />
+        </EntityType>
+        <EntityType Name="F_DetailAttachment">
+          <Key>
+            <PropertyRef Name="VoucherID" />
+          </Key>
+          <Property Name="VoucherID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FAB_ID" Type="Int32" />
+          <Property Name="C_ID" Type="Int32" />
+          <Property Name="Year" Type="Int32" />
+          <Property Name="Date" Type="DateTime" Precision="3" />
+          <Property Name="Voucher" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="F_DetailHelp">
+          <Key>
+            <PropertyRef Name="FDH_ID" />
+          </Key>
+          <Property Name="FDH_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FAB_ID" Type="Int32" />
+          <Property Name="FDA_ID" Type="Int32" />
+          <Property Name="C_ID" Type="Int32" />
+          <Property Name="Type" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Code" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="F_FinancialSystem">
+          <Key>
+            <PropertyRef Name="FS_ID" />
+          </Key>
+          <Property Name="FS_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FinancialSystem" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Type" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="F_Proof">
+          <Key>
+            <PropertyRef Name="VoucherID" />
+          </Key>
+          <Property Name="VoucherID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="C_ID" Type="Int32" />
+          <Property Name="FAB_ID" Type="Int32" />
+          <Property Name="Year" Type="Int32" />
+          <Property Name="Date" Type="DateTime" Precision="0" />
+          <Property Name="Voucher" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="FileIndex" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityContainer Name="AuditDBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="AccountingFirms" EntityType="Self.AccountingFirms" />
+          <EntitySet Name="Audit_OperatingLog" EntityType="Self.Audit_OperatingLog" />
+          <EntitySet Name="Audit_Organization" EntityType="Self.Audit_Organization" />
+          <EntitySet Name="Audit_Post" EntityType="Self.Audit_Post" />
+          <EntitySet Name="Audit_User" EntityType="Self.Audit_User" />
+          <EntitySet Name="C_Bank_Account" EntityType="Self.C_Bank_Account" />
+          <EntitySet Name="C_Contract" EntityType="Self.C_Contract" />
+          <EntitySet Name="C_FinancialRelevanceEnterprise" EntityType="Self.C_FinancialRelevanceEnterprise" />
+          <EntitySet Name="C_RelevanceEnterprise" EntityType="Self.C_RelevanceEnterprise" />
+          <EntitySet Name="C_RelevancePersonage" EntityType="Self.C_RelevancePersonage" />
+          <EntitySet Name="CA_Role" EntityType="Self.CA_Role" />
+          <EntitySet Name="CA_User" EntityType="Self.CA_User" />
+          <EntitySet Name="Company" EntityType="Self.Company" />
+          <EntitySet Name="F_DetailAccount" EntityType="Self.F_DetailAccount" />
+          <EntitySet Name="F_TrialBalance" EntityType="Self.F_TrialBalance" />
+          <EntitySet Name="FR_Report" EntityType="Self.FR_Report" />
+          <EntitySet Name="FR_Report_Formula" EntityType="Self.FR_Report_Formula" />
+          <EntitySet Name="M_BaseTable" EntityType="Self.M_BaseTable" />
+          <EntitySet Name="M_Subject" EntityType="Self.M_Subject" />
+          <EntitySet Name="报表字段" EntityType="Self.报表字段" />
+          <EntitySet Name="F_AccountBook" EntityType="Self.F_AccountBook" />
+          <EntitySet Name="F_DetailAttachment" EntityType="Self.F_DetailAttachment" />
+          <EntitySet Name="F_DetailHelp" EntityType="Self.F_DetailHelp" />
+          <EntitySet Name="F_FinancialSystem" EntityType="Self.F_FinancialSystem" />
+          <EntitySet Name="F_Proof" EntityType="Self.F_Proof" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="AuditDBModelStoreContainer" CdmEntityContainer="AuditDBEntities">
+          <EntitySetMapping Name="AccountingFirms">
+            <EntityTypeMapping TypeName="AuditDBModel.AccountingFirms">
+              <MappingFragment StoreEntitySet="AccountingFirms">
+                <ScalarProperty Name="AF_ID" ColumnName="AF_ID" />
+                <ScalarProperty Name="AF_CID" ColumnName="AF_CID" />
+                <ScalarProperty Name="AF_Name" ColumnName="AF_Name" />
+                <ScalarProperty Name="AF_Logo" ColumnName="AF_Logo" />
+                <ScalarProperty Name="AF_Type" ColumnName="AF_Type" />
+                <ScalarProperty Name="AF_Address" ColumnName="AF_Address" />
+                <ScalarProperty Name="Contact" ColumnName="Contact" />
+                <ScalarProperty Name="Telphone" ColumnName="Telphone" />
+                <ScalarProperty Name="TaxpayerID" ColumnName="TaxpayerID" />
+                <ScalarProperty Name="RegistrationAddress" ColumnName="RegistrationAddress" />
+                <ScalarProperty Name="AF_Bank" ColumnName="AF_Bank" />
+                <ScalarProperty Name="AF_BankAccount" ColumnName="AF_BankAccount" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Audit_OperatingLog">
+            <EntityTypeMapping TypeName="AuditDBModel.Audit_OperatingLog">
+              <MappingFragment StoreEntitySet="Audit_OperatingLog">
+                <ScalarProperty Name="OL_ID" ColumnName="OL_ID" />
+                <ScalarProperty Name="AF_ID" ColumnName="AF_ID" />
+                <ScalarProperty Name="User_ID" ColumnName="User_ID" />
+                <ScalarProperty Name="Modules" ColumnName="Modules" />
+                <ScalarProperty Name="OperatingType" ColumnName="OperatingType" />
+                <ScalarProperty Name="OperatingInstructions" ColumnName="OperatingInstructions" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Audit_Organization">
+            <EntityTypeMapping TypeName="AuditDBModel.Audit_Organization">
+              <MappingFragment StoreEntitySet="Audit_Organization">
+                <ScalarProperty Name="Org_ID" ColumnName="Org_ID" />
+                <ScalarProperty Name="Org_Name" ColumnName="Org_Name" />
+                <ScalarProperty Name="AF_ID" ColumnName="AF_ID" />
+                <ScalarProperty Name="Parent_Org_ID" ColumnName="Parent_Org_ID" />
+                <ScalarProperty Name="Org_Manager" ColumnName="Org_Manager" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Audit_Post">
+            <EntityTypeMapping TypeName="AuditDBModel.Audit_Post">
+              <MappingFragment StoreEntitySet="Audit_Post">
+                <ScalarProperty Name="P_ID" ColumnName="P_ID" />
+                <ScalarProperty Name="AF_ID" ColumnName="AF_ID" />
+                <ScalarProperty Name="Post_Name" ColumnName="Post_Name" />
+                <ScalarProperty Name="Post_Level" ColumnName="Post_Level" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Audit_User">
+            <EntityTypeMapping TypeName="AuditDBModel.Audit_User">
+              <MappingFragment StoreEntitySet="Audit_User">
+                <ScalarProperty Name="User_ID" ColumnName="User_ID" />
+                <ScalarProperty Name="AF_ID" ColumnName="AF_ID" />
+                <ScalarProperty Name="Org_ID" ColumnName="Org_ID" />
+                <ScalarProperty Name="User_Name" ColumnName="User_Name" />
+                <ScalarProperty Name="Photo" ColumnName="Photo" />
+                <ScalarProperty Name="Login_Name" ColumnName="Login_Name" />
+                <ScalarProperty Name="Mobile" ColumnName="Mobile" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="P_ID" ColumnName="P_ID" />
+                <ScalarProperty Name="Sex" ColumnName="Sex" />
+                <ScalarProperty Name="TelPhone" ColumnName="TelPhone" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="EntryDate" ColumnName="EntryDate" />
+                <ScalarProperty Name="CreatDate" ColumnName="CreatDate" />
+                <ScalarProperty Name="ExpiryDate" ColumnName="ExpiryDate" />
+                <ScalarProperty Name="LockVersion" ColumnName="LockVersion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="C_Bank_Account">
+            <EntityTypeMapping TypeName="AuditDBModel.C_Bank_Account">
+              <MappingFragment StoreEntitySet="C_Bank_Account">
+                <ScalarProperty Name="C_BAID" ColumnName="C_BAID" />
+                <ScalarProperty Name="CRE_ID" ColumnName="CRE_ID" />
+                <ScalarProperty Name="FirstSubjectCode" ColumnName="FirstSubjectCode" />
+                <ScalarProperty Name="FirstSubjectTitle" ColumnName="FirstSubjectTitle" />
+                <ScalarProperty Name="SubjectCode" ColumnName="SubjectCode" />
+                <ScalarProperty Name="HelpCode" ColumnName="HelpCode" />
+                <ScalarProperty Name="SubjectTitle" ColumnName="SubjectTitle" />
+                <ScalarProperty Name="BankAccount" ColumnName="BankAccount" />
+                <ScalarProperty Name="Account_Type" ColumnName="Account_Type" />
+                <ScalarProperty Name="Account_Status" ColumnName="Account_Status" />
+                <ScalarProperty Name="isLimitation" ColumnName="isLimitation" />
+                <ScalarProperty Name="LimitationPeriod" ColumnName="LimitationPeriod" />
+                <ScalarProperty Name="LimitationMoney" ColumnName="LimitationMoney" />
+                <ScalarProperty Name="AccountUse" ColumnName="AccountUse" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="C_Contract">
+            <EntityTypeMapping TypeName="AuditDBModel.C_Contract">
+              <MappingFragment StoreEntitySet="C_Contract">
+                <ScalarProperty Name="C_COID" ColumnName="C_COID" />
+                <ScalarProperty Name="FirstSubjectCode" ColumnName="FirstSubjectCode" />
+                <ScalarProperty Name="FirstSubjectTitle" ColumnName="FirstSubjectTitle" />
+                <ScalarProperty Name="SubjectCode" ColumnName="SubjectCode" />
+                <ScalarProperty Name="HelpCode" ColumnName="HelpCode" />
+                <ScalarProperty Name="SubjectTitle" ColumnName="SubjectTitle" />
+                <ScalarProperty Name="C_ID" ColumnName="C_ID" />
+                <ScalarProperty Name="CFRE_ER" ColumnName="CFRE_ER" />
+                <ScalarProperty Name="ContractType" ColumnName="ContractType" />
+                <ScalarProperty Name="ContractID" ColumnName="ContractID" />
+                <ScalarProperty Name="Money" ColumnName="Money" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="InterestRate" ColumnName="InterestRate" />
+                <ScalarProperty Name="Number" ColumnName="Number" />
+                <ScalarProperty Name="HandleDepartment" ColumnName="HandleDepartment" />
+                <ScalarProperty Name="Handler" ColumnName="Handler" />
+                <ScalarProperty Name="isInvoice" ColumnName="isInvoice" />
+                <ScalarProperty Name="isOver" ColumnName="isOver" />
+                <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
+                <ScalarProperty Name="Attachment" ColumnName="Attachment" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="C_FinancialRelevanceEnterprise">
+            <EntityTypeMapping TypeName="AuditDBModel.C_FinancialRelevanceEnterprise">
+              <MappingFragment StoreEntitySet="C_FinancialRelevanceEnterprise">
+                <ScalarProperty Name="CFRE_ID" ColumnName="CFRE_ID" />
+                <ScalarProperty Name="CFRE_Classify" ColumnName="CFRE_Classify" />
+                <ScalarProperty Name="CFR_ID" ColumnName="CFR_ID" />
+                <ScalarProperty Name="CFRE_ER" ColumnName="CFRE_ER" />
+                <ScalarProperty Name="FirstSubjectCode" ColumnName="FirstSubjectCode" />
+                <ScalarProperty Name="FirstSubjectTitle" ColumnName="FirstSubjectTitle" />
+                <ScalarProperty Name="SubjectCode" ColumnName="SubjectCode" />
+                <ScalarProperty Name="HelpCode" ColumnName="HelpCode" />
+                <ScalarProperty Name="SubjectTitle" ColumnName="SubjectTitle" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="C_RelevanceEnterprise">
+            <EntityTypeMapping TypeName="AuditDBModel.C_RelevanceEnterprise">
+              <MappingFragment StoreEntitySet="C_RelevanceEnterprise">
+                <ScalarProperty Name="CRE_ID" ColumnName="CRE_ID" />
+                <ScalarProperty Name="C_ID" ColumnName="C_ID" />
+                <ScalarProperty Name="CRE_Classify" ColumnName="CRE_Classify" />
+                <ScalarProperty Name="CreditCode" ColumnName="CreditCode" />
+                <ScalarProperty Name="CN_Enterprise_Name" ColumnName="CN_Enterprise_Name" />
+                <ScalarProperty Name="EN_Enterprise_Name" ColumnName="EN_Enterprise_Name" />
+                <ScalarProperty Name="RegistrationMoney" ColumnName="RegistrationMoney" />
+                <ScalarProperty Name="Corporation" ColumnName="Corporation" />
+                <ScalarProperty Name="RegistrationDate" ColumnName="RegistrationDate" />
+                <ScalarProperty Name="RegistrationAddress" ColumnName="RegistrationAddress" />
+                <ScalarProperty Name="WorkAddress" ColumnName="WorkAddress" />
+                <ScalarProperty Name="Telphone" ColumnName="Telphone" />
+                <ScalarProperty Name="Contact" ColumnName="Contact" />
+                <ScalarProperty Name="Contact_Department" ColumnName="Contact_Department" />
+                <ScalarProperty Name="Contact_Post" ColumnName="Contact_Post" />
+                <ScalarProperty Name="Contact_Address" ColumnName="Contact_Address" />
+                <ScalarProperty Name="Contact_Telphone" ColumnName="Contact_Telphone" />
+                <ScalarProperty Name="Contact_PostCode" ColumnName="Contact_PostCode" />
+                <ScalarProperty Name="FAX" ColumnName="FAX" />
+                <ScalarProperty Name="EMail" ColumnName="EMail" />
+                <ScalarProperty Name="BusinessScope" ColumnName="BusinessScope" />
+                <ScalarProperty Name="Company_Articles" ColumnName="Company_Articles" />
+                <ScalarProperty Name="Invoice_CompayName" ColumnName="Invoice_CompayName" />
+                <ScalarProperty Name="Invoice_TaxpayerID" ColumnName="Invoice_TaxpayerID" />
+                <ScalarProperty Name="Invoice_TEL" ColumnName="Invoice_TEL" />
+                <ScalarProperty Name="Invoice_RegistrationAddress" ColumnName="Invoice_RegistrationAddress" />
+                <ScalarProperty Name="Invoice_Bank" ColumnName="Invoice_Bank" />
+                <ScalarProperty Name="Invoice_BankAccount" ColumnName="Invoice_BankAccount" />
+                <ScalarProperty Name="isAffiliatedPerson" ColumnName="isAffiliatedPerson" />
+                <ScalarProperty Name="isAffiliatedCompany" ColumnName="isAffiliatedCompany" />
+                <ScalarProperty Name="BusinessType" ColumnName="BusinessType" />
+                <ScalarProperty Name="LockVersion" ColumnName="LockVersion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="C_RelevancePersonage">
+            <EntityTypeMapping TypeName="AuditDBModel.C_RelevancePersonage">
+              <MappingFragment StoreEntitySet="C_RelevancePersonage">
+                <ScalarProperty Name="CRP_ID" ColumnName="CRP_ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID_Type" ColumnName="ID_Type" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Telphone" ColumnName="Telphone" />
+                <ScalarProperty Name="PostCode" ColumnName="PostCode" />
+                <ScalarProperty Name="EMail" ColumnName="EMail" />
+                <ScalarProperty Name="FundNature" ColumnName="FundNature" />
+                <ScalarProperty Name="FundWay" ColumnName="FundWay" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CA_Role">
+            <EntityTypeMapping TypeName="AuditDBModel.CA_Role">
+              <MappingFragment StoreEntitySet="CA_Role">
+                <ScalarProperty Name="RID" ColumnName="RID" />
+                <ScalarProperty Name="Role" ColumnName="Role" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CA_User">
+            <EntityTypeMapping TypeName="AuditDBModel.CA_User">
+              <MappingFragment StoreEntitySet="CA_User">
+                <ScalarProperty Name="CA_UserID" ColumnName="CA_UserID" />
+                <ScalarProperty Name="C_ID" ColumnName="C_ID" />
+                <ScalarProperty Name="User_ID" ColumnName="User_ID" />
+                <ScalarProperty Name="Role_ID" ColumnName="Role_ID" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Remark" ColumnName="Remark" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Company">
+            <EntityTypeMapping TypeName="AuditDBModel.Company">
+              <MappingFragment StoreEntitySet="Company">
+                <ScalarProperty Name="C_ID" ColumnName="C_ID" />
+                <ScalarProperty Name="CreditCode" ColumnName="CreditCode" />
+                <ScalarProperty Name="CN_Compant_Name" ColumnName="CN_Compant_Name" />
+                <ScalarProperty Name="EN_Compant_Name" ColumnName="EN_Compant_Name" />
+                <ScalarProperty Name="Logo" ColumnName="Logo" />
+                <ScalarProperty Name="Company_Lever" ColumnName="Company_Lever" />
+                <ScalarProperty Name="RegistrationCode" ColumnName="RegistrationCode" />
+                <ScalarProperty Name="OrganizationCode" ColumnName="OrganizationCode" />
+                <ScalarProperty Name="TaxpayerID" ColumnName="TaxpayerID" />
+                <ScalarProperty Name="Corporation" ColumnName="Corporation" />
+                <ScalarProperty Name="Corporation_ID" ColumnName="Corporation_ID" />
+                <ScalarProperty Name="Company_Type" ColumnName="Company_Type" />
+                <ScalarProperty Name="Industry" ColumnName="Industry" />
+                <ScalarProperty Name="EnterpriseLabels" ColumnName="EnterpriseLabels" />
+                <ScalarProperty Name="ApprovedDate" ColumnName="ApprovedDate" />
+                <ScalarProperty Name="OperationPeriod" ColumnName="OperationPeriod" />
+                <ScalarProperty Name="RegInstitute" ColumnName="RegInstitute" />
+                <ScalarProperty Name="Province" ColumnName="Province" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="District" ColumnName="District" />
+                <ScalarProperty Name="RegistrationDate" ColumnName="RegistrationDate" />
+                <ScalarProperty Name="RegistrationMoney" ColumnName="RegistrationMoney" />
+                <ScalarProperty Name="RegistrationAddress" ColumnName="RegistrationAddress" />
+                <ScalarProperty Name="WorkAddress" ColumnName="WorkAddress" />
+                <ScalarProperty Name="RegistrationStatus" ColumnName="RegistrationStatus" />
+                <ScalarProperty Name="Telphone" ColumnName="Telphone" />
+                <ScalarProperty Name="FAX" ColumnName="FAX" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Website" ColumnName="Website" />
+                <ScalarProperty Name="Company_Introduction" ColumnName="Company_Introduction" />
+                <ScalarProperty Name="BusinessScope" ColumnName="BusinessScope" />
+                <ScalarProperty Name="Company_Articles" ColumnName="Company_Articles" />
+                <ScalarProperty Name="Parent_C_ID" ColumnName="Parent_C_ID" />
+                <ScalarProperty Name="Parent_C_Name" ColumnName="Parent_C_Name" />
+                <ScalarProperty Name="Parent_C_CreditCode" ColumnName="Parent_C_CreditCode" />
+                <ScalarProperty Name="AuditStatus" ColumnName="AuditStatus" />
+                <ScalarProperty Name="Creator" ColumnName="Creator" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
+                <ScalarProperty Name="LockVersion" ColumnName="LockVersion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="F_DetailAccount">
+            <EntityTypeMapping TypeName="AuditDBModel.F_DetailAccount">
+              <MappingFragment StoreEntitySet="F_DetailAccount">
+                <ScalarProperty Name="FDA_ID" ColumnName="FDA_ID" />
+                <ScalarProperty Name="C_ID" ColumnName="C_ID" />
+                <ScalarProperty Name="FAB_ID" ColumnName="FAB_ID" />
+                <ScalarProperty Name="Year" ColumnName="Year" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Voucher" ColumnName="Voucher" />
+                <ScalarProperty Name="VoucherID" ColumnName="VoucherID" />
+                <ScalarProperty Name="SubjectCode" ColumnName="SubjectCode" />
+                <ScalarProperty Name="SubjectTitle" ColumnName="SubjectTitle" />
+                <ScalarProperty Name="Abstract" ColumnName="Abstract" />
+                <ScalarProperty Name="Direction" ColumnName="Direction" />
+                <ScalarProperty Name="Number" ColumnName="Number" />
+                <ScalarProperty Name="Currency" ColumnName="Currency" />
+                <ScalarProperty Name="Money" ColumnName="Money" />
+                <ScalarProperty Name="ForeignMoney" ColumnName="ForeignMoney" />
+                <ScalarProperty Name="ChangeRange" ColumnName="ChangeRange" />
+                <ScalarProperty Name="ChangeType" ColumnName="ChangeType" />
+                <ScalarProperty Name="IsCheck" ColumnName="IsCheck" />
+                <ScalarProperty Name="Creator" ColumnName="Creator" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="SysCode" ColumnName="SysCode" />
+                <ScalarProperty Name="A_DetailHelp_Code" ColumnName="A_DetailHelp_Code" />
+                <ScalarProperty Name="A_DetailHelp_Name" ColumnName="A_DetailHelp_Name" />
+                <ScalarProperty Name="B_DetailHelp_Code" ColumnName="B_DetailHelp_Code" />
+                <ScalarProperty Name="B_DetailHelp_Name" ColumnName="B_DetailHelp_Name" />
+                <ScalarProperty Name="C_DetailHelp_Code" ColumnName="C_DetailHelp_Code" />
+                <ScalarProperty Name="C_DetailHelp_Name" ColumnName="C_DetailHelp_Name" />
+                <ScalarProperty Name="D_DetailHelp_Code" ColumnName="D_DetailHelp_Code" />
+                <ScalarProperty Name="D_DetailHelp_Name" ColumnName="D_DetailHelp_Name" />
+                <ScalarProperty Name="E_DetailHelp_Code" ColumnName="E_DetailHelp_Code" />
+                <ScalarProperty Name="E_DetailHelp_Name" ColumnName="E_DetailHelp_Name" />
+                <ScalarProperty Name="F_DetailHelp_Code" ColumnName="F_DetailHelp_Code" />
+                <ScalarProperty Name="F_DetailHelp_Name" ColumnName="F_DetailHelp_Name" />
+                <ScalarProperty Name="G_DetailHelp_Code" ColumnName="G_DetailHelp_Code" />
+                <ScalarProperty Name="G_DetailHelp_Name" ColumnName="G_DetailHelp_Name" />
+                <ScalarProperty Name="H_DetailHelp_Code" ColumnName="H_DetailHelp_Code" />
+                <ScalarProperty Name="H_DetailHelp_Name" ColumnName="H_DetailHelp_Name" />
+                <ScalarProperty Name="I_DetailHelp_Code" ColumnName="I_DetailHelp_Code" />
+                <ScalarProperty Name="I_DetailHelp_Name" ColumnName="I_DetailHelp_Name" />
+                <ScalarProperty Name="J_DetailHelp_Code" ColumnName="J_DetailHelp_Code" />
+                <ScalarProperty Name="J_DetailHelp_Name" ColumnName="J_DetailHelp_Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="F_TrialBalance">
+            <EntityTypeMapping TypeName="AuditDBModel.F_TrialBalance">
+              <MappingFragment StoreEntitySet="F_TrialBalance">
+                <ScalarProperty Name="FTB_ID" ColumnName="FTB_ID" />
+                <ScalarProperty Name="C_ID" ColumnName="C_ID" />
+                <ScalarProperty Name="FAB_ID" ColumnName="FAB_ID" />
+                <ScalarProperty Name="Year" ColumnName="Year" />
+                <ScalarProperty Name="SubjectCode" ColumnName="SubjectCode" />
+                <ScalarProperty Name="SubjectTitle" ColumnName="SubjectTitle" />
+                <ScalarProperty Name="isMappingSure" ColumnName="isMappingSure" />
+                <ScalarProperty Name="SubjectCodeMapping" ColumnName="SubjectCodeMapping" />
+                <ScalarProperty Name="SubjectTitleMapping" ColumnName="SubjectTitleMapping" />
+                <ScalarProperty Name="HelpCode" ColumnName="HelpCode" />
+                <ScalarProperty Name="ForeignCurrency" ColumnName="ForeignCurrency" />
+                <ScalarProperty Name="Qc_Direction" ColumnName="Qc_Direction" />
+                <ScalarProperty Name="Qc_old" ColumnName="Qc_old" />
+                <ScalarProperty Name="Qc_num_old" ColumnName="Qc_num_old" />
+                <ScalarProperty Name="Qc_Change" ColumnName="Qc_Change" />
+                <ScalarProperty Name="Qc_Change_num" ColumnName="Qc_Change_num" />
+                <ScalarProperty Name="Bq_debit_old" ColumnName="Bq_debit_old" />
+                <ScalarProperty Name="Bq_debit_num_old" ColumnName="Bq_debit_num_old" />
+                <ScalarProperty Name="Bq_debit_num" ColumnName="Bq_debit_num" />
+                <ScalarProperty Name="Bq_debit" ColumnName="Bq_debit" />
+                <ScalarProperty Name="Bq_credit_old" ColumnName="Bq_credit_old" />
+                <ScalarProperty Name="Bq_credit_num_old" ColumnName="Bq_credit_num_old" />
+                <ScalarProperty Name="Bq_credit_num" ColumnName="Bq_credit_num" />
+                <ScalarProperty Name="Bq_credit" ColumnName="Bq_credit" />
+                <ScalarProperty Name="Qm_Direction" ColumnName="Qm_Direction" />
+                <ScalarProperty Name="Qm_old" ColumnName="Qm_old" />
+                <ScalarProperty Name="Qm_num_old" ColumnName="Qm_num_old" />
+                <ScalarProperty Name="Bq_Change_credit" ColumnName="Bq_Change_credit" />
+                <ScalarProperty Name="Bq_Change_credit_num" ColumnName="Bq_Change_credit_num" />
+                <ScalarProperty Name="Bq_Change_debit" ColumnName="Bq_Change_debit" />
+                <ScalarProperty Name="Bq_Change_debit_num" ColumnName="Bq_Change_debit_num" />
+                <ScalarProperty Name="SubjectLevel" ColumnName="SubjectLevel" />
+                <ScalarProperty Name="Creator" ColumnName="Creator" />
+                <ScalarProperty Name="Direction" ColumnName="Direction" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="IsConfirmation" ColumnName="IsConfirmation" />
+                <ScalarProperty Name="SubjectCodePath" ColumnName="SubjectCodePath" />
+                <ScalarProperty Name="SubjectTitlePath" ColumnName="SubjectTitlePath" />
+                <ScalarProperty Name="ParentSubjectCode" ColumnName="ParentSubjectCode" />
+                <ScalarProperty Name="IsMapping" ColumnName="IsMapping" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FR_Report">
+            <EntityTypeMapping TypeName="AuditDBModel.FR_Report">
+              <MappingFragment StoreEntitySet="FR_Report">
+                <ScalarProperty Name="FR_ID" ColumnName="FR_ID" />
+                <ScalarProperty Name="FR_Code" ColumnName="FR_Code" />
+                <ScalarProperty Name="FR_Name" ColumnName="FR_Name" />
+                <ScalarProperty Name="FR_Type" ColumnName="FR_Type" />
+                <ScalarProperty Name="FR_Content" ColumnName="FR_Content" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FR_Report_Formula">
+            <EntityTypeMapping TypeName="AuditDBModel.FR_Report_Formula">
+              <MappingFragment StoreEntitySet="FR_Report_Formula">
+                <ScalarProperty Name="FR_FRID" ColumnName="FR_FRID" />
+                <ScalarProperty Name="C_ID" ColumnName="C_ID" />
+                <ScalarProperty Name="FR_Code" ColumnName="FR_Code" />
+                <ScalarProperty Name="FR_FCode" ColumnName="FR_FCode" />
+                <ScalarProperty Name="SubjectTitle" ColumnName="SubjectTitle" />
+                <ScalarProperty Name="Subject_File" ColumnName="Subject_File" />
+                <ScalarProperty Name="FR_RowValue" ColumnName="FR_RowValue" />
+                <ScalarProperty Name="Direction" ColumnName="Direction" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="M_BaseTable">
+            <EntityTypeMapping TypeName="AuditDBModel.M_BaseTable">
+              <MappingFragment StoreEntitySet="M_BaseTable">
+                <ScalarProperty Name="MID" ColumnName="MID" />
+                <ScalarProperty Name="Filed" ColumnName="Filed" />
+                <ScalarProperty Name="M_ID" ColumnName="M_ID" />
+                <ScalarProperty Name="M_Name" ColumnName="M_Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="M_Subject">
+            <EntityTypeMapping TypeName="AuditDBModel.M_Subject">
+              <MappingFragment StoreEntitySet="M_Subject">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="SubjectClassify" ColumnName="SubjectClassify" />
+                <ScalarProperty Name="SubjectCode" ColumnName="SubjectCode" />
+                <ScalarProperty Name="SubjectName" ColumnName="SubjectName" />
+                <ScalarProperty Name="Direction" ColumnName="Direction" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="报表字段">
+            <EntityTypeMapping TypeName="AuditDBModel.报表字段">
+              <MappingFragment StoreEntitySet="报表字段">
+                <ScalarProperty Name="FR_FID" ColumnName="FR_FID" />
+                <ScalarProperty Name="FR_FCode" ColumnName="FR_FCode" />
+                <ScalarProperty Name="FR_FName" ColumnName="FR_FName" />
+                <ScalarProperty Name="isCustomField" ColumnName="isCustomField" />
+                <ScalarProperty Name="isConvergeField" ColumnName="isConvergeField" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="F_AccountBook">
+            <EntityTypeMapping TypeName="AuditDBModel.F_AccountBook">
+              <MappingFragment StoreEntitySet="F_AccountBook">
+                <ScalarProperty Name="FAB_ID" ColumnName="FAB_ID" />
+                <ScalarProperty Name="AB_Name" ColumnName="AB_Name" />
+                <ScalarProperty Name="C_ID" ColumnName="C_ID" />
+                <ScalarProperty Name="Year" ColumnName="Year" />
+                <ScalarProperty Name="AccountingPeriod" ColumnName="AccountingPeriod" />
+                <ScalarProperty Name="AccountingperiodRemark" ColumnName="AccountingperiodRemark" />
+                <ScalarProperty Name="FS_ID" ColumnName="FS_ID" />
+                <ScalarProperty Name="Author" ColumnName="Author" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="ExportLocking" ColumnName="ExportLocking" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="F_DetailAttachment">
+            <EntityTypeMapping TypeName="AuditDBModel.F_DetailAttachment">
+              <MappingFragment StoreEntitySet="F_DetailAttachment">
+                <ScalarProperty Name="VoucherID" ColumnName="VoucherID" />
+                <ScalarProperty Name="FAB_ID" ColumnName="FAB_ID" />
+                <ScalarProperty Name="C_ID" ColumnName="C_ID" />
+                <ScalarProperty Name="Year" ColumnName="Year" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Voucher" ColumnName="Voucher" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="F_DetailHelp">
+            <EntityTypeMapping TypeName="AuditDBModel.F_DetailHelp">
+              <MappingFragment StoreEntitySet="F_DetailHelp">
+                <ScalarProperty Name="FDH_ID" ColumnName="FDH_ID" />
+                <ScalarProperty Name="FAB_ID" ColumnName="FAB_ID" />
+                <ScalarProperty Name="FDA_ID" ColumnName="FDA_ID" />
+                <ScalarProperty Name="C_ID" ColumnName="C_ID" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="F_FinancialSystem">
+            <EntityTypeMapping TypeName="AuditDBModel.F_FinancialSystem">
+              <MappingFragment StoreEntitySet="F_FinancialSystem">
+                <ScalarProperty Name="FS_ID" ColumnName="FS_ID" />
+                <ScalarProperty Name="FinancialSystem" ColumnName="FinancialSystem" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="F_Proof">
+            <EntityTypeMapping TypeName="AuditDBModel.F_Proof">
+              <MappingFragment StoreEntitySet="F_Proof">
+                <ScalarProperty Name="VoucherID" ColumnName="VoucherID" />
+                <ScalarProperty Name="C_ID" ColumnName="C_ID" />
+                <ScalarProperty Name="FAB_ID" ColumnName="FAB_ID" />
+                <ScalarProperty Name="Year" ColumnName="Year" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Voucher" ColumnName="Voucher" />
+                <ScalarProperty Name="FileIndex" ColumnName="FileIndex" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="无" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
