@@ -4,17 +4,45 @@
         <name>AuditSystemBusinessDLL</name>
     </assembly>
     <members>
-        <member name="T:AuditSystemBusinessDLL.Helper.LogHelper">
+        <member name="T:AuditSystemBusinessDLL.Helper.Log.NLogHelper">
+            <summary>
+            Logger接口
+            </summary>
+        </member>
+        <member name="F:AuditSystemBusinessDLL.Helper.Log.NLogHelper.NLogger">
+            <summary>
+            NLOG
+            </summary>
+        </member>
+        <member name="M:AuditSystemBusinessDLL.Helper.Log.NLogHelper.WriteError(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="error"></param>
+        </member>
+        <member name="M:AuditSystemBusinessDLL.Helper.Log.NLogHelper.WriteInfo(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="info"></param>
+        </member>
+        <member name="M:AuditSystemBusinessDLL.Helper.Log.NLogHelper.WriteWaring(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="waring"></param>
+        </member>
+        <member name="T:AuditSystemBusinessDLL.Helper.NLogHelper">
             <summary>
             日志帮助器
             </summary>
         </member>
-        <member name="F:AuditSystemBusinessDLL.Helper.LogHelper.loginfo">
+        <member name="F:AuditSystemBusinessDLL.Helper.NLogHelper.loginfo">
             <summary>
             
             </summary>
         </member>
-        <member name="F:AuditSystemBusinessDLL.Helper.LogHelper.NLogger">
+        <member name="F:AuditSystemBusinessDLL.Helper.NLogHelper.NLogger">
             <summary>
             NLOG
             </summary>

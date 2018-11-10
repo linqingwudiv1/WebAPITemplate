@@ -5,7 +5,7 @@ namespace AuditSystemBusinessDLL.Helper
     /// <summary>
     /// 日志帮助器
     /// </summary>
-    static public class LogHelper
+    static public class NLogHelper
     {
         /// <summary>
         /// 

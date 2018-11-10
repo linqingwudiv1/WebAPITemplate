@@ -26,6 +26,16 @@
             </summary>
             <param name="routes"></param>
         </member>
+        <member name="T:AuditSystemWebAPI.SwaggerConfig">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:AuditSystemWebAPI.SwaggerConfig.Register">
+            <summary>
+            
+            </summary>
+        </member>
         <member name="T:AuditSystemWebAPI.WebApiConfig">
             <summary>
             
@@ -48,6 +58,28 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="T:AuditSystemWebAPI.Controllers.TestController">
+            <summary>
+            测试
+            </summary>
+        </member>
+        <member name="M:AuditSystemWebAPI.Controllers.TestController.#ctor(AuditSystemBusinessDLL.Helper.Log.ILogHelper)">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:AuditSystemWebAPI.Controllers.TestController.HelloWebAPI">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:AuditSystemWebAPI.Controllers.TestController.NLog_Test(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="info"></param>
+            <returns></returns>
+        </member>
         <member name="T:AuditSystemWebAPI.WebApiApplication">
             <summary>
             
@@ -59,6 +91,16 @@
             </summary>
         </member>
         <member name="M:AuditSystemWebAPI.WebApiApplication.Application_Start">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:AuditSystemWebAPI.IoCConfig">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:AuditSystemWebAPI.IoCConfig.RegisterDependencies">
             <summary>
             
             </summary>

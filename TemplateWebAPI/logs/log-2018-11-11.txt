@@ -1,0 +1,6 @@
+2018-11-11 00:04:09.7432|INFO|AuditSystemBusinessDLL.Helper.Log.NLogHelper|info : hh
+2018-11-11 00:04:09.7432|ERROR|AuditSystemBusinessDLL.Helper.Log.NLogHelper|Error : hh
+2018-11-11 00:04:09.7532|ERROR|AuditSystemBusinessDLL.Helper.Log.NLogHelper|Waring : hh
+2018-11-11 00:06:38.6705|INFO|AuditSystemBusinessDLL.Helper.Log.NLogHelper|info : abc123
+2018-11-11 00:06:38.6745|ERROR|AuditSystemBusinessDLL.Helper.Log.NLogHelper|Error : abc123
+2018-11-11 00:06:38.6745|ERROR|AuditSystemBusinessDLL.Helper.Log.NLogHelper|Waring : abc123
