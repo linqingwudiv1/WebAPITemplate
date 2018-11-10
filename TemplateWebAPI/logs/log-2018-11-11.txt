@@ -4,3 +4,12 @@
 2018-11-11 00:06:38.6705|INFO|AuditSystemBusinessDLL.Helper.Log.NLogHelper|info : abc123
 2018-11-11 00:06:38.6745|ERROR|AuditSystemBusinessDLL.Helper.Log.NLogHelper|Error : abc123
 2018-11-11 00:06:38.6745|ERROR|AuditSystemBusinessDLL.Helper.Log.NLogHelper|Waring : abc123
+2018-11-11 00:17:52.0581|INFO|AuditSystemBusinessDLL.Helper.Log.NLogHelper|info : 11
+2018-11-11 00:17:52.0771|ERROR|AuditSystemBusinessDLL.Helper.Log.NLogHelper|Error : 11
+2018-11-11 00:17:52.0831|ERROR|AuditSystemBusinessDLL.Helper.Log.NLogHelper|Waring : 11
+2018-11-11 00:37:20.6882|INFO|AuditSystemBusinessDLL.Helper.Log.NLogHelper|hollo controller
+2018-11-11 00:37:27.6891|INFO|AuditSystemBusinessDLL.Helper.Log.NLogHelper|hollo controller
+2018-11-11 00:58:46.0850|INFO|AuditSystemBusinessDLL.Helper.Log.NLogHelper|hollo controller
+2018-11-11 01:15:24.7118|INFO|AuditSystemBusinessDLL.Helper.Log.NLogHelper|hollo controller
+2018-11-11 01:16:11.4852|INFO|AuditSystemBusinessDLL.Helper.Log.NLogHelper|hollo controller
+2018-11-11 01:16:39.6449|INFO|AuditSystemBusinessDLL.Helper.Log.NLogHelper|hollo controller

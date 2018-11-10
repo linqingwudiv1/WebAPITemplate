@@ -1,5 +1,6 @@
 ﻿using AuditSystemBusinessDLL.Helper;
 using AuditSystemBusinessDLL.Helper.Log;
+using AuditSystemBusinessDLL.Model.EF;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,12 +16,14 @@ namespace AuditSystemWebAPI.Controllers
     public class TestController : ApiController
     {
         private readonly ILogHelper logHelper = null;
+        private readonly IDataHelper DataHelper = null;
         /// <summary>
         /// 
         /// </summary>
-        public TestController(ILogHelper _logHelper)
+        public TestController(ILogHelper _logHelper, IDataHelper _DataHelper)
         {
             logHelper = _logHelper;
+            DataHelper = _DataHelper;
         }
 
         /// <summary>
@@ -29,7 +32,7 @@ namespace AuditSystemWebAPI.Controllers
         [HttpGet]
         public string HelloWebAPI()
         {
-            return "Hello WebAPI";
+            return "say :" + DataHelper.GetData( " hello" , "WebAPI");
         }
 
         /// <summary>

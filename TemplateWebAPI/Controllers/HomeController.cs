@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AuditSystemBusinessDLL.Helper.Log;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -11,6 +12,18 @@ namespace AuditSystemWebAPI.Controllers
     /// </summary>
     public class HomeController : Controller
     {
+        private readonly ILogHelper logHelper;
+
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="_logHelper"></param>
+        public HomeController(ILogHelper _logHelper)
+        {
+            this.logHelper = _logHelper;
+            logHelper.WriteInfo("hollo controller");
+        }
         /// <summary>
         /// 
         /// </summary>

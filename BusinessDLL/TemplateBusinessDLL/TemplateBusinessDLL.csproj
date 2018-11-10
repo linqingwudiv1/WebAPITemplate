@@ -108,6 +108,8 @@
     <Compile Include="Model\DTOs\Common\DTO_ReturnModel.cs" />
     <Compile Include="Base\BaseAPIController.cs" />
     <Compile Include="Business\ExtendMethod\Ex_AuditDB.cs" />
+    <Compile Include="Model\EF\DBDataHelper.cs" />
+    <Compile Include="Model\EF\IDataHelper.cs" />
     <Compile Include="Static\ConnectionHelper.cs" />
     <Compile Include="Static\SessionHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -126,7 +128,6 @@
     <Folder Include="Business\Static\" />
     <Folder Include="Filter\" />
     <Folder Include="Model\Base\" />
-    <Folder Include="Model\EF\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
