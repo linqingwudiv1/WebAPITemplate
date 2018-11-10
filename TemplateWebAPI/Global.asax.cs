@@ -36,8 +36,7 @@ namespace AuditSystemWebAPI
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
-
-
+            
             //EF 初次使用暖机
             /*
             using (var AuditDB = new AuditDBContext())
