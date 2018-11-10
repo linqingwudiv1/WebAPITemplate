@@ -29,7 +29,7 @@ namespace AuditSystemWebAPI
         /// </summary>
         protected void Application_Start()
         {
-            IoCConfig.RegisterDependencies();
+            IOCConfig.RegisterDependencies();
 
             AreaRegistration.RegisterAllAreas();
             GlobalConfiguration.Configure(WebApiConfig.Register);

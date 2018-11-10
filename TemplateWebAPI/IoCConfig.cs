@@ -16,7 +16,7 @@ namespace AuditSystemWebAPI
     /// <summary>
     /// 
     /// </summary>
-    public class IoCConfig
+    public class IOCConfig
     {
         /// <summary>
         /// 
